@@ -18,8 +18,8 @@ async def get_data(username: str):
 
     return  user_out
 
-@billetera_app.put("/user/put")
-async def nuevo_usuario(new_user:UserInDB, username:str):
+@billetera_app.post("/add/usuario")
+async def post_usuario(new_user:UserInDB, username:str):
 
     apodo = get_user(username)
 
