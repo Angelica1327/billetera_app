@@ -3,6 +3,17 @@ from db.user_db import UserInDB
 from db.user_db import database_users
 from db.user_db import update_user, get_user
 from models.user_models import UserIn, UserOut
+from fastapi.middleware.cors import CORSMiddleware
+
+
+origins = [
+"http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
+"http://localhost", "http://localhost:8080", "https://billetera-app.herokuapp.com",
+]
+api.add_middleware(
+CORSMiddleware, allow_origins=origins,
+allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+)
 
 billetera_app = FastAPI()
 
