@@ -31,7 +31,7 @@ async def get_data(username: str):
 
     return  user_out
 
-@billetera_app.post("/add/usuario")
+@billetera_app.post("/user/registro")
 async def post_usuario(new_user:UserInDB, username:str):
 
     apodo = get_user(username)
