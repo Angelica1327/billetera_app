@@ -34,10 +34,11 @@ async def get_data(username: str):
 @billetera_app.post("/user/registro")
 async def post_usuario(new_user:UserInDB, username:str):
 
-    apodo = get_user(username)
 
-    if apodo != new_user.username:
-        database_users[new_user.username]=new_user
-        return new_user
+    apodo = update_user(new_user)
+    return apodo
+    # if apodo == new_user.username:
+    #     database_users[new_user.username]=new_user
+    #     return new_user
 
  
