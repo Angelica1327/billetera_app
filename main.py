@@ -9,7 +9,7 @@ billetera_app = FastAPI()
 
 origins = [
 "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
-"http://localhost", "http://localhost:8080", "https://billeterafront.herokuapp.com/",
+"http://localhost", "http://localhost:8080", "https://pruebabilleterafront.herokuapp.com", "https://billeterafront.herokuapp.com",
 ]
 
 billetera_app.add_middleware(
