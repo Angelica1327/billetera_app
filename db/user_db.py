@@ -37,6 +37,19 @@ def get_user(username: str):
     else:
         return None
 
-def update_user(user_in_db: UserInDB):
+def post_user(user_in_db: UserInDB):
     database_users[user_in_db.username] = user_in_db
     return user_in_db.username
+
+
+def update_user (user_in:dict):
+    if isinstance(database_users[user_in["username"]], UserInDB):
+        new_user = database_users[user_in["username"]].dict()
+    else: new_user = database_users[user_in["username"]]
+    for key in user_in:
+        new_user[key] = user_in[key]
+    database_users[user_in["username"]]=new_user
+    print(database_users[user_in["username"]])
+    return user_in["username"]
+        
+

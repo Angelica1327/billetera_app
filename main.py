@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from db.user_db import UserInDB
 from db.user_db import database_users
-from db.user_db import update_user, get_user
+from db.user_db import post_user, get_user, update_user
 from models.user_models import UserIn, UserOut
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -13,7 +13,7 @@ origins = [
 ]
 
 billetera_app.add_middleware(
-CORSMiddleware, allow_origins=origins,
+CORSMiddleware, allow_origins= origins,
 allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
 )
 
@@ -27,18 +27,23 @@ async def get_data(username: str):
     if user_in_db == None:
         raise HTTPException(status_code=404, detail="El usuario no existe")
 
-    user_out = UserOut(**user_in_db.dict())
+    # user_out = UserOut(**user_in_db.dict())
 
-    return  user_out
+    return  user_in_db
 
 @billetera_app.post("/user/registro")
 async def post_usuario(new_user:UserInDB, username:str):
 
-
-    apodo = update_user(new_user)
+    apodo = post_user(new_user)
     return apodo
     # if apodo == new_user.username:
     #     database_users[new_user.username]=new_user
     #     return new_user
 
- 
+
+@billetera_app.put("/user/put")
+async def Actualizar(put_user:dict, username:str):
+    temporal= put_user
+    temporal["username"]=username
+    apodo= update_user(temporal)
+    return apodo
